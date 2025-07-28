@@ -156,7 +156,7 @@ act_spacing = '300e-6m'
 act_coupling = 0.15
 max_stroke = '1.5e-6m'
 n_bits = 16
-coating_refl = "coatings/AlMgF2_curve.csv"
+coating_refl = "coatings/bmc_dm_AgMgF2.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.1234055034338526m'
 
@@ -278,7 +278,7 @@ prop_dist = '0.08357002309866585m'
 [arm_a.sensor]
 exposure_time = 1                   # seconds
 black_level = 100
-gain = 100
+gain = 120
 pixel_size = '3.76e-6m'                # meters
 qe = "sensors/ZWO_ASI294MM_Pro_QE_curve.csv" 
 dark_current = "sensors/ZWO_ASI294MM_Pro_Dark_Current_vs_Sensor_Temperature.csv"
