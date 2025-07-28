@@ -191,7 +191,7 @@ surf_rms = '6e-9m'
 psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
 opd_map = 'opds/OAP6_map.fits'
-coating_refl = "coatings/AlMgF2_curve.csv"
+coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 coating_refl_rms = 0.005
 prop_dist = '0.46433211378828493m'
 
