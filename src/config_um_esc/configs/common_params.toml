@@ -252,7 +252,7 @@ psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
 psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
 opd_map = 'opds/FILTER_map.fits'
 prop_dist = '0.15540687479124612m'
-lam_central = '450.0nm' #central wavelength of filter THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
+lam_central = '630.0nm' #central wavelength of filter THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
 bandwidth = 0.02 # fraction of central wavelength bandwidth THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
 
 [arm_a.optics.qwp2]
