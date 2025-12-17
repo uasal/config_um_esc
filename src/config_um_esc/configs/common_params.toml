@@ -6,16 +6,16 @@ bandwidth = 0.24 # fraction of wvl_reference
 [sources] #---------------------------------------------------------------------
 
 [sources.host]
-magnitude = -0.353 #Filter magnitude
+magnitude = -0. #Filter magnitude
 spectral_profile = "pickles_uk_23.fits" # host star spectral template (default is Pickles G0)
 
 [sources.companion]
 delta_magnitude = 20 #delta filter magnitude
-separation = 0.4 # arcsec
+separation = 0.2 # arcsec
 spectral_profile = "placeholder.fits" # TBD planet spectral template
 
 [sources.exozodi]
-delta_magnitude = 21 #delta filter magnitude
+delta_magnitude = 22 #delta filter magnitude,  Stark et al 2016 Table 1 value
 spectral_profile = "zodiacal_001.fits"
 
 [ETC]
