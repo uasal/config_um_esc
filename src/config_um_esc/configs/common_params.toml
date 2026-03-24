@@ -43,237 +43,75 @@ aper_clear_ID = '0.0m'
 prop_dist = '0.5105869985134304m'
 
 [arm_a.optics.oap1]
-aper_clear_OD = '50.8e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.5105869985134304m'
-roc = '1.000203185722913m'
-conic = -1
-off_axis_dist = '0.14463738266077092m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP1_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.19117699916497802m'
 
 
 [arm_a.optics.pupil_mask]
-aper_clear_OD = '14e-3m'
-aper_clear_ID = '0.0m'
-prop_dist = '0.07873448943460244m'
+
 
 [arm_a.optics.oap2]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.1022237526492536m'
-roc = '0.2m'
-conic = -1
-off_axis_dist = '0.03m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP2_map.fits'
-coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
+_mirror.csv"
 coating_refl_rms = 0.005
-prop_dist = '0.1022237526492536m'
 
 [arm_a.optics.int_focal_plane1]
-prop_dist = '0.07511509008726716m'
 
 [arm_a.optics.oap3]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.07511509008726716m'
-roc = '0.142m'
-conic = -1
-off_axis_dist = '0.0342m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP3_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.1216640462422038m'
+
 
 [arm_a.optics.dichroic]
 dichroic_throughput = 0.9
 
 [arm_a.optics.fsm]
-aper_clear_OD = '10e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.0m'
-roc = '0.0m'
-conic = 0
-off_axis_dist = '0.0m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/FSM_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.05459237814349035m'
-
 
 [arm_a.optics.oap4]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.1129076777227092m'
-roc = '0.2m'
-conic = -1
-off_axis_dist = '0.072m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP4_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.1129076777227092m'
+
 
 [arm_a.optics.int_focal_plane2]
 prop_dist = '0.11290767855594101m'
-
-[arm_a.optics.oap5]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.11290767855594101m'
-roc = '0.2m'
-conic = -1
-off_axis_dist = '0.072m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP5_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.06714161347730624m'
 
 [arm_a.optics.dm]
-aper_clear_OD = '10.2e-3m'
-aper_clear_ID = '0.0m'
-n_acts = 34
-act_spacing = '300e-6m'
-act_coupling = 0.15
-max_stroke = '1.5e-6m'
-n_bits = 16
 coating_refl = "coatings/bmc_dm_au.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.1234055034338526m'
 
 [arm_a.optics.lp1]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/LP1_map.fits'
 pol_throughput = "transmissive_optics/meadowlark_VIS_pol_transmit.csv"
-prop_dist = '0.01099859443087553m'
 
 [arm_a.optics.qwp1]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/QWP1_map.fits'
 pol_throughput = 'none'
-prop_dist = '0.08499825769977906m'
 
 [arm_a.optics.oap6]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.46433211378828493m'
-roc = '0.9m'
-conic = -1
-off_axis_dist = '0.151m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP6_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.46433211378828493m'
 
 [arm_a.optics.fpm]
 charge = 6
 diam_dot = 0.6 # lamD
-prop_dist = '0.20621905307034472m'
 throughput = "transmissive_optics/vvc_throughput_vs_lamD.fits"
 
 [arm_a.optics.oap7]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.20621905307034472m'
-roc = '0.4m'
-conic = -1
-off_axis_dist = '0.0705m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP7_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.25380476511281813m'
 
 [arm_a.optics.lyot_stop]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '3.7e-3m'
-pinhole_separation = '5.89e-3m'
-pinhole_angle = '45degree'
-pinhole_diam = '100e-6m'
 lyot_ratio = 0.8909222248976645
-prop_dist = '0.07842937112339132m'
 
 [arm_a.optics.oap9]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.1464285714571997m'
-roc = '0.28m'
-conic = -1
-off_axis_dist = '0.06m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP9_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
-prop_dist = '0.1464285714571997m'
 
 [arm_a.optics.field_stop]
 prop_dist = '0.140786700680841m'
 
 
 [arm_a.optics.filter]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/FILTER_map.fits'
-prop_dist = '0.15540687479124612m'
 lam_central = '630.0nm' #central wavelength of filter THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
 bandwidth = 0.02 # fraction of central wavelength bandwidth THIS IS TEMPORARY UNTIL AN ACTUAL FILTER CURVE IS AVAILABLE
 
 [arm_a.optics.qwp2]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/QWP2_map.fits'
 pol_throughput = 'none'
-prop_dist = '0.01061985976562573m'
 
 [arm_a.optics.lp2]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/LP2_map.fits'
 pol_throughput = "transmissive_optics/meadowlark_VIS_pol_transmit.csv"
-prop_dist = '0.08357002309866585m'
 
 [arm_a.sensor]
 exposure_time = 1                   # seconds
@@ -303,19 +141,8 @@ aper_clear_ID = '3.7e-3m'
 [llowfs.optics]
 
 [llowfs.optics.oap8]
-aper_clear_OD = '25.4e-3m'
-aper_clear_ID = '0.0m'
-focal_length = '0.2m' # OR COULD BE 0.11296m NEED TO ASK KIAN 
-roc = '0.2m'
-conic = -1
-off_axis_dist = '0.072m'
-surf_rms = '6e-9m' 
-psd_b = 10 # cylces/m - C. Mendillo's SCOT Leakage Budget in design docs
-psd_c = 2.65 # power law exponent - C. Mendillo's SCOT Leakage Budget in design docs
-opd_map = 'opds/OAP8_map.fits'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 coating_refl_rms = 0.005
-prop_dist = '0.2m' # OR COULD BE 0.11296m NEED TO ASK KIAN 
 
 [llowfs.sensor]
 exposure_time = 1                   # seconds
