@@ -40,7 +40,6 @@ aper_clear_ID = '0.0m'
 [arm_a.optics]
 
 [arm_a.optics.wcc_focal_plane]
-prop_dist = '0.5105869985134304m'
 
 [arm_a.optics.oap1]
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
@@ -70,7 +69,6 @@ coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 
 
 [arm_a.optics.int_focal_plane2]
-prop_dist = '0.11290767855594101m'
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 
 [arm_a.optics.dm]
@@ -142,7 +140,6 @@ aper_clear_ID = '3.7e-3m'
 
 [llowfs.optics.oap8]
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
-coating_refl_rms = 0.005
 
 [llowfs.sensor]
 exposure_time = 1                   # seconds
