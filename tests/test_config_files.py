@@ -1,11 +1,10 @@
-import config_project_template  # CHANGE this to name of your tool / repo
+import config_um_esc
 from pathlib import Path
 import pytest
 
 from utils_config import ConfigLoader
 
-# CHANGE the path 'config_project_template' to your tool / repo name
-CONFIGS_PATH = Path(config_project_template.__file__).parent / "configs"
+CONFIGS_PATH = Path(config_um_esc.__file__).parent / "configs"
 
 
 def test_load_configs_valid():
@@ -27,8 +26,7 @@ def test_astropy_units():
     uses the ConfigLoader class + validate_astropy() method to parse configs installed in this package
     and then return either [] for no errors (passing assert), or a list containing information on each violation
     """
-    # CHANGE the path 'config_project_template' to your tool / repo name
-    errors = config_project_template.load_config_values(
+    errors = config_um_esc.load_config_values(
         "parsed", return_loader=True
     ).validate_astropy()
     assert errors == True, "Invalid astropy units found:\n" + "\n".join(errors)

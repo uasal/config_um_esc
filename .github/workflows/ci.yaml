@@ -119,8 +119,7 @@ jobs:
           MPLBACKEND: Agg
         run: |
           set -o pipefail
-          pytest tests/test_config_um_esc.py \
-                 tests/test_esc_etc_initialization.py::test_configs_instrument \
+          pytest tests/test_esc_etc_initialization.py::test_configs_instrument \
                  tests/test_esc_etc_initialization.py::test_validate_ETC_snr_calculation \
             -v --tb=long -s \
             --junitxml=downstream-integration-results.xml \

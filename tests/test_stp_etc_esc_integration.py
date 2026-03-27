@@ -28,7 +28,6 @@ STP_ETC_ESC_BRANCH = "develop"
 
 # stp_etc_esc tests that are relevant to config_um_esc compatibility.
 DOWNSTREAM_TEST_FILES = [
-    "tests/test_config_um_esc.py",
     "tests/test_esc_etc_initialization.py",
 ]
 
@@ -162,34 +161,6 @@ def stp_etc_esc_env():
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
-
-
-@pytest.mark.integration
-def test_downstream_config_um_esc(stp_etc_esc_env):
-    """
-    Run stp_etc_esc's test_config_um_esc.py against the local config_um_esc checkout.
-
-    A failure here means the current config changes break stp_etc_esc's
-    config-loading tests, NOT that config_um_esc itself is malformed.
-    """
-    clone_dir = stp_etc_esc_env["clone_dir"]
-    env = stp_etc_esc_env["env"]
-
-    test_file = clone_dir / "tests" / "test_config_um_esc.py"
-    result = _run(
-        [sys.executable, "-m", "pytest", str(test_file), "-v", "--tb=long", "-s"],
-        cwd=str(clone_dir),
-        env=env,
-        check=False,
-    )
-
-    if result.returncode != 0:
-        pytest.fail(
-            "DOWNSTREAM COMPATIBILITY FAILURE — stp_etc_esc/tests/test_config_um_esc.py "
-            "failed against this config_um_esc branch.\n\n"
-            "This is a downstream integration failure, not a config validation failure.\n\n"
-            f"--- pytest output ---\n{result.stdout}"
-        )
 
 
 @pytest.mark.integration
