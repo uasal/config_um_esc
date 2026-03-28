@@ -125,6 +125,16 @@ jobs:
             --junitxml=downstream-integration-results.xml \
             | tee downstream-integration-output.txt
 
+      - name: Run SNR test with config_um_esc configuration
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -o pipefail
+          pytest config_um_esc/tests/test_snr_with_config_um_esc.py \
+            -v --tb=long -s \
+            --junitxml=snr-config-um-esc-results.xml \
+            | tee snr-config-um-esc-output.txt
+
       - name: Upload downstream test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -133,3 +143,5 @@ jobs:
           path: |
             stp_etc_esc/downstream-integration-results.xml
             stp_etc_esc/downstream-integration-output.txt
+            snr-config-um-esc-results.xml
+            snr-config-um-esc-output.txt

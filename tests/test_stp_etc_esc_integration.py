@@ -14,6 +14,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import textwrap
 from pathlib import Path
 
 import pytest
@@ -230,4 +231,67 @@ def test_downstream_esc_etc_initialization(stp_etc_esc_env):
             "::test_configs_instrument failed against this config_um_esc branch.\n\n"
             "This is a downstream integration failure, not a config validation failure.\n\n"
             f"--- pytest output ---\n{result.stdout}"
+        )
+
+
+@pytest.mark.integration
+def test_downstream_snr_with_config_um_esc(stp_etc_esc_env):
+    """
+    Run an SNR calculation using stp_etc_esc initialised with this repo's
+    config_um_esc configuration (common_params.toml).
+
+    The existing ``test_validate_ETC_snr_calculation`` only exercises the
+    default config_stp_esc configuration.  This test ensures that swapping
+    in config_um_esc's instrument config and support-data does NOT break
+    the ETC — i.e. the config in *this* repo is structurally compatible
+    with stp_etc_esc and produces a valid positive SNR.
+    """
+    clone_dir = stp_etc_esc_env["clone_dir"]
+    env = stp_etc_esc_env["env"]
+
+    script = textwrap.dedent("""\
+        import matplotlib
+        matplotlib.use("Agg")
+
+        import config_um_esc
+        import astropy.units as u
+        from pathlib import Path
+        from stp_etc_esc import ExposureTimeSNRCalculatorESC as etsc
+
+        esc_config = config_um_esc.load_config_values()
+        esc_data_path = Path(config_um_esc.get_data_path())
+
+        obs = etsc.Observatory("STP", 2.4 * u.m, 36.45 * u.m)
+        obs.make_STP(escconfig=esc_config, escpath=esc_data_path)
+
+        obs.set_generic_source(1e-8, 0)
+        obs.set_background(background_file=None, plot=False)
+        obs.make_observation(
+            hoststarflux=esc_config["common_params"]["sources"]["host"]["magnitude"],
+            planetdeltamag=esc_config["common_params"]["sources"]["companion"]["delta_magnitude"],
+            bg_flux=22.5,
+            flux_units="vega",
+            plot=False,
+            exobg_flux=21,
+        )
+
+        snr = obs.calc_SNR(600.0 * u.s, 10.0 * u.s)
+        assert snr > 0, f"SNR should be positive, got {snr}"
+        print(f"SUCCESS: SNR with config_um_esc = {snr}")
+    """)
+
+    result = _run(
+        [sys.executable, "-c", script],
+        cwd=str(clone_dir),
+        env=env,
+        check=False,
+    )
+
+    if result.returncode != 0:
+        pytest.fail(
+            "DOWNSTREAM COMPATIBILITY FAILURE — stp_etc_esc SNR calculation "
+            "with config_um_esc configuration failed.\n\n"
+            "This means the config files in this repo (common_params.toml) "
+            "break the ETC when used as the instrument configuration.\n\n"
+            f"--- output ---\n{result.stdout}"
         )
