@@ -175,7 +175,7 @@ def test_downstream_validate_ETC_snr_calculation(stp_etc_esc_env):
     SNR result agrees to within 0.5 %.
 
     A failure here means the current config changes affect the ETC's numerical
-    SNR output, NOT that the config files themselves are malformed.
+    SNR output, not necessarily that the toml inputs are misformatted.
     """
     clone_dir = stp_etc_esc_env["clone_dir"]
     env = stp_etc_esc_env["env"]
