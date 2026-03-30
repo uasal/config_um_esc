@@ -92,7 +92,7 @@ throughput = "transmissive_optics/vvc_throughput_vs_lamD.fits"
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 
 [arm_a.optics.lyot_stop]
-lyot_ratio = 0.8909222248976645
+lyot_ratio = 0.9
 
 [arm_a.optics.oap9]
 coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
