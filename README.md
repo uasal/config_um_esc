@@ -27,7 +27,7 @@ pip install git+ssh://git@github.com/uasal/config_um_esc.git
 ```sh
 git clone git@github.com:uasal/config_um_esc.git
 cd config_um_esc
-pip install .
+pip install -e .
 ```
 
 ## Usage
