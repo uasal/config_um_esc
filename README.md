@@ -20,14 +20,14 @@ In the event that you wish to interact with the files in the package, which may 
 
 
 ```sh
-pip install git+ssh://git@github.com/uasal/config_project_template.git
+pip install git+ssh://git@github.com/uasal/config_um_esc.git
 ```
 
 ### Installed via cloning
 ```sh
-git clone git@github.com:uasal/config_project_template.git
-cd config_project_template
-pip install .
+git clone git@github.com:uasal/config_um_esc.git
+cd config_um_esc
+pip install -e .
 ```
 
 ## Usage
@@ -37,8 +37,8 @@ What is included in this readme is only a brief summary.
 
 config_stp makes usage of the ConfigLoader class (as *config_loader*) from utils_config via the `load_config_values` method, which accepts 'raw' 'parsed' or 'unitless' as an argument, returning a dictionary after parsing the 'configs' directory for .toml filies
 ```python
-import config_project_template
-data = config_project_template.load_config_values()
+import config_um_esc
+data = config_um_esc.load_config_values()
 print(data["observatory"]["pointing"]["jitter_rms"])
 ```
 
