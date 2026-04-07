@@ -84,7 +84,16 @@ def stp_etc_esc_env():
 
     The fixture installs packages in the *same* Python environment that is
     running this test so that no virtual-env creation is needed in CI.
+
+    Skipped unless the ``RUN_DOWNSTREAM_INTEGRATION`` environment variable
+    is set to ``1``.
     """
+    if os.environ.get("RUN_DOWNSTREAM_INTEGRATION") != "1":
+        pytest.skip(
+            "Skipping downstream integration test. Set "
+            "RUN_DOWNSTREAM_INTEGRATION=1 to enable cloning/installing "
+            "stp_etc_esc during this test run."
+        )
     with tempfile.TemporaryDirectory(prefix="stp_etc_esc_") as tmpdir:
         clone_dir = Path(tmpdir) / "stp_etc_esc"
 

@@ -86,6 +86,7 @@ jobs:
           # but the actual directory is tests/test_data/test_stp (different depth + lowercase).
           # Create a root-level symlink so both paths resolve correctly on Linux.
           mkdir -p stp_etc_esc/test_data
+          rm -rf stp_etc_esc/test_data/test_STP
           ln -s ../tests/test_data/test_stp stp_etc_esc/test_data/test_STP
 
       - name: Install stp_etc_esc dependencies (excluding config_um_esc)

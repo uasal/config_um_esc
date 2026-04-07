@@ -8,14 +8,18 @@ configuration.
 Run this after installing both stp_etc_esc and config_um_esc.
 """
 
-import matplotlib
+import pytest
+
+pytest.importorskip("matplotlib")
+import matplotlib  # noqa: E402
 matplotlib.use("Agg")
 
-import config_um_esc
-import astropy.units as u
-from pathlib import Path
+import config_um_esc  # noqa: E402
+import astropy.units as u  # noqa: E402
+from pathlib import Path  # noqa: E402
 
-from stp_etc_esc import ExposureTimeSNRCalculatorESC as etsc
+stp_etc_esc = pytest.importorskip("stp_etc_esc")
+etsc = stp_etc_esc.ExposureTimeSNRCalculatorESC
 
 
 def test_snr_calculation_with_config_um_esc():
