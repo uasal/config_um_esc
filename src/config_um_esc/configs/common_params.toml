@@ -49,7 +49,7 @@ coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 
 
 [arm_a.optics.oap2]
-_mirror.csv"
+coating_refl = "coatings/qe_ag_fss99_profile_mirror.csv"
 coating_refl_rms = 0.005
 
 [arm_a.optics.int_focal_plane1]
