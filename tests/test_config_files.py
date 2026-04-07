@@ -24,9 +24,14 @@ def test_astropy_units():
     """
     Test that all unit strings in the parsed configuration files ("parsed" format) are valid Astropy units.
     uses the ConfigLoader class + validate_astropy() method to parse configs installed in this package
-    and then return either [] for no errors (passing assert), or a list containing information on each violation
+    and then return either True for no errors (passing assert), or a list containing information on each violation
     """
-    valid_units = config_um_esc.load_config_values(
+    result = config_um_esc.load_config_values(
         "parsed", return_loader=True
     ).validate_astropy()
-    assert not valid_units, "Invalid astropy units found:\n" + "\n".join(valid_units)
+
+    if result is True:
+        return  # All units are valid
+
+    assert not result, "Invalid astropy units found:\n" + "\n".join(result)
+
