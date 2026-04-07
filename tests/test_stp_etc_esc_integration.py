@@ -27,12 +27,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 STP_ETC_ESC_REPO = "https://github.com/uasal/stp_etc_esc.git"
 STP_ETC_ESC_BRANCH = "develop"
 
-# stp_etc_esc tests that are relevant to config_um_esc compatibility.
-DOWNSTREAM_TEST_FILES = [
-    "tests/test_esc_etc_initialization.py",
-]
-
-
 def _run(cmd, cwd=None, env=None, check=True):
     """Run *cmd*, stream a labelled header + full output, and fail on error."""
     cmd_str = " ".join(str(c) for c in cmd)
