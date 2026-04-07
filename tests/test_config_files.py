@@ -34,3 +34,4 @@ def test_astropy_units():
         return  # All units are valid
 
     assert not result, "Invalid astropy units found:\n" + "\n".join(result)
+
