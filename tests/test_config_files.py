@@ -29,4 +29,4 @@ def test_astropy_units():
     errors = config_um_esc.load_config_values(
         "parsed", return_loader=True
     ).validate_astropy()
-    assert errors == True, "Invalid astropy units found:\n" + "\n".join(errors)
+    assert not errors, "Invalid astropy units found:\n" + "\n".join(errors)
