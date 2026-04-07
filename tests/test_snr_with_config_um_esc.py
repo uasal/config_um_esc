@@ -10,8 +10,7 @@ Run this after installing both stp_etc_esc and config_um_esc.
 
 import pytest
 
-pytest.importorskip("matplotlib")
-import matplotlib  # noqa: E402
+matplotlib = pytest.importorskip("matplotlib")
 matplotlib.use("Agg")
 
 import config_um_esc  # noqa: E402
