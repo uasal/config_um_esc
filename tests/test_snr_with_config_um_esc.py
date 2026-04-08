@@ -29,7 +29,7 @@ def test_snr_calculation_with_config_um_esc():
     esc_config = config_um_esc.load_config_values()
     esc_data_path = Path(config_um_esc.get_data_path())
 
-    obs = etsc.Observatory("STP", 2.4 * u.m, 36.45 * u.m)
+    obs = etsc.Observatory("STP", 3.0 * u.m, 36.45 * u.m)
     obs.make_STP(escconfig=esc_config, escpath=esc_data_path)
 
     obs.set_generic_source(1e-8, 0)
