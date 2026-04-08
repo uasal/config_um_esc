@@ -17,8 +17,7 @@ import config_um_esc  # noqa: E402
 import astropy.units as u  # noqa: E402
 from pathlib import Path  # noqa: E402
 
-stp_etc_esc = pytest.importorskip("stp_etc_esc")
-etsc = stp_etc_esc.ExposureTimeSNRCalculatorESC
+etsc = pytest.importorskip("stp_etc_esc.ExposureTimeSNRCalculatorESC")
 
 
 def test_snr_calculation_with_config_um_esc():
