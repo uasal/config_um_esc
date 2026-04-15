@@ -4,33 +4,145 @@ on:
   push:
     branches:
       - '**'
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
 jobs:
-  check-tomls-python3-12:
+  # ---------------------------------------------------------------------------
+  # Job 1: Validate that the config files in this repo are well-formed
+  # ---------------------------------------------------------------------------
+  config-validation:
+    name: Config Validation
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout config_um_esc
+        uses: actions/checkout@v5
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pytest toml
-   
-    - name: Install Package
-      run: |
-        pip install .
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest toml
+          pip install git+https://github.com/uasal/utils_config.git@develop
 
-    - name: Run Tests and Save Results
-      id: pytest_results
-      run: |
-        pytest tests/ --tb=short --maxfail=1 --junitxml=report.xml | tee pytest_output.txt
+      - name: Install config_um_esc
+        run: pip install .
 
-        PASSED=$(python -c "import re; f=open('pytest_output.txt').read(); match=re.search(r'(\d+) passed', f); print(match.group(1) if match else '0')")
-        FAILED=$(grep -oP '\d+(?= failed)' pytest_output.txt || echo "0")
+      - name: Run config validation tests
+        run: |
+          set -o pipefail
+          pytest tests/test_config_files.py tests/test_version_consistency.py \
+            -v --tb=long -s --junitxml=config-validation-results.xml \
+            | tee config-validation-output.txt
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: config-validation-results
+          path: |
+            config-validation-results.xml
+            config-validation-output.txt
+
+  # ---------------------------------------------------------------------------
+  # Job 2: Run stp_etc_esc's tests against THIS branch's config
+  # ---------------------------------------------------------------------------
+  downstream-integration:
+    name: Downstream Integration (stp_etc_esc)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout config_um_esc
+        uses: actions/checkout@v4
+        with:
+          path: config_um_esc
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install local config_um_esc first
+        working-directory: config_um_esc
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+
+      - name: Clone stp_etc_esc (develop branch)
+        run: git clone --depth 1 --branch develop https://github.com/uasal/stp_etc_esc.git
+
+      - name: Create test_data path alias (Linux case-sensitive filesystem fix)
+        run: |
+          # The stp_etc_esc tests reference test_data/test_STP relative to the repo root,
+          # but the actual directory is tests/test_data/test_stp (different depth + lowercase).
+          # Create a root-level symlink so both paths resolve correctly on Linux.
+          mkdir -p stp_etc_esc/test_data
+          rm -rf stp_etc_esc/test_data/test_STP
+          ln -s ../tests/test_data/test_stp stp_etc_esc/test_data/test_STP
+
+      - name: Install stp_etc_esc dependencies (excluding config_um_esc)
+        working-directory: stp_etc_esc
+        run: |
+          # Remove the config_um_esc line so pip does not overwrite
+          # the locally installed version from the PR branch.
+          grep -v 'config_um_esc' requirements.txt > requirements_filtered.txt
+          echo "=== requirements_filtered.txt ==="
+          cat requirements_filtered.txt
+          echo "================================="
+          pip install -r requirements_filtered.txt
+          pip install pytest
+
+      - name: Install stp_etc_esc (no-deps to protect local config)
+        working-directory: stp_etc_esc
+        run: pip install --no-deps .
+
+      - name: Verify key package versions
+        run: |
+          echo "=== Active config_um_esc install ==="
+          pip show config_um_esc
+          echo "=== Active stp_etc_esc install ==="
+          pip show stp_etc_esc
+          echo "=== Full relevant package list ==="
+          pip list | grep -E 'config|stp|utils|synphot|astropy|numpy'
+
+      - name: Run stp_etc_esc tests against local config
+        working-directory: stp_etc_esc
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -o pipefail
+          pytest tests/test_esc_etc_initialization.py::test_configs_instrument \
+                 tests/test_esc_etc_initialization.py::test_validate_ETC_snr_calculation \
+            -v --tb=long -s \
+            --junitxml=downstream-integration-results.xml \
+            | tee downstream-integration-output.txt
+
+      - name: Run SNR test with config_um_esc configuration
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -o pipefail
+          pytest config_um_esc/tests/test_snr_with_config_um_esc.py \
+            -v --tb=long -s \
+            --junitxml=snr-config-um-esc-results.xml \
+            | tee snr-config-um-esc-output.txt
+
+      - name: Upload downstream test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: downstream-integration-results
+          path: |
+            stp_etc_esc/downstream-integration-results.xml
+            stp_etc_esc/downstream-integration-output.txt
+            snr-config-um-esc-results.xml
+            snr-config-um-esc-output.txt

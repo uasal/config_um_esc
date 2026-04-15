@@ -35,6 +35,9 @@ local_scheme = "node-and-date"
 testpaths = [
 	"tests",
 ]
+markers = [
+	"integration: downstream integration tests (require RUN_DOWNSTREAM_INTEGRATION=1)",
+]
 
 # This should match the path for the write_to under tool.setuptools_scm
 [tool.coverage.run]
